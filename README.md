@@ -1,64 +1,130 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+🛠️ Laravel Admin Dashboard Project
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This project is a simple Admin Dashboard built with Laravel that demonstrates user management and product management with authentication and role-based access.
 
-## About Laravel
+📌 Features
+🔑 Authentication & Authorization
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Laravel’s built-in Auth system is used for login/logout.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Access to the admin dashboard is restricted:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+if (Auth::check() && Auth::user()->role === 'admin') {
+    // only admins can view the dashboard
+}
 
-## Learning Laravel
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Only users with the role Admin can view all users and products.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+👥 User Management
 
-## Laravel Sponsors
+The dashboard lists all registered users in blide template and also allowes to create user and login , logout using API's via postman.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-### Premium Partners
+📦 Product Management
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+Products are stored in the products table with fields:
 
-## Contributing
+create , update, delete, search product via API request from post man.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+🎨 Blade Templates
 
-## Code of Conduct
+Laravel Blade templating engine is used for UI.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Conditional rendering with @if, looping with @foreach / @forelse.
 
-## Security Vulnerabilities
+Bootstrap is used for styling tables, buttons, and badges.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+📂 Project Structure
 
-## License
+<img width="643" height="257" alt="image" src="https://github.com/user-attachments/assets/4737b8fb-54b1-4cf6-90e1-7e170c0024c1" />
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+🚀 How It Works
+
+Login as Admin
+
+Only admins can access /dashboard.
+
+User Management Section
+
+Displays all registered users with role and verification status.
+
+Product Management Section
+
+Displays all products along with their creator’s name.
+
+🧩 Concepts Used
+
+Authentication (Laravel Auth)
+
+Role-based Access Control (RBAC)
+
+Eloquent ORM (Relationships: belongsTo)
+
+Blade Templates (@forelse, @if, @foreach)
+
+Bootstrap for UI (tables, badges, buttons)
+
+✅ Future Enhancements
+
+Add edit/delete functionality for users and products.
+
+Implement pagination for large datasets.
+
+Add search & filter options in tables.
+
+Implement Soft Deletes for products and users.
+
+
+SCREENSHOTS FOR REFERENCE:
+
+Blade concepts:
+
+Login:
+<img width="1366" height="530" alt="image" src="https://github.com/user-attachments/assets/d0f7ba97-2792-460b-a121-4b28f1d73ab7" />
+
+Customer dashboard:
+<img width="1366" height="574" alt="image" src="https://github.com/user-attachments/assets/54937d82-5a6c-4c14-9c1b-af538ac94ec5" />
+
+Admin dashboard:
+<img width="1366" height="628" alt="image" src="https://github.com/user-attachments/assets/5224840d-d9f6-450c-a3fa-d048151b1483" />
+
+
+API Concepts:
+
+Register user
+
+<img width="988" height="619" alt="image" src="https://github.com/user-attachments/assets/316f045c-f319-4ef3-9868-b289f950be5f" />
+
+
+Login user
+
+<img width="946" height="538" alt="image" src="https://github.com/user-attachments/assets/a42b6e8f-ef0d-471e-816b-a88022ba6e05" />
+
+
+Delete user
+
+<img width="933" height="513" alt="image" src="https://github.com/user-attachments/assets/4f70dff1-a4f5-4775-b703-e5f96623fb7c" />
+
+
+Create Product
+
+<img width="934" height="625" alt="image" src="https://github.com/user-attachments/assets/2c0f4058-f6cb-4a4d-bb54-616bcc4505dc" />
+
+
+Get Product
+
+<img width="965" height="624" alt="image" src="https://github.com/user-attachments/assets/5538f0ca-198f-4082-9e00-d834d8ec9379" />
+
+
+Search Product
+
+<img width="945" height="623" alt="image" src="https://github.com/user-attachments/assets/9b306a4d-805c-4d80-85ce-fcbff2b0fe54" />
+
+
+
+
+
+
+
