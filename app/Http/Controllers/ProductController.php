@@ -15,23 +15,31 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::latest()->get();
+        // eager load creator (user) for performance
+        $products = Product::with('creator')->latest()->get();
 
-        if (is_null($products->first())) {
+        if ($products->isEmpty()) {
             return response()->json([
-                'status' => 'failed',
+                'status'  => 'failed',
                 'message' => 'No product found!',
             ], 200);
         }
 
-        $response = [
-            'status' => 'success',
+        return response()->json([
+            'status'  => 'success',
             'message' => 'Products are retrieved successfully.',
-            'data' => $products,
-        ];
-
-        return response()->json($response, 200);
+            'data'    => $products->map(function ($product) {
+                return [
+                    'id'          => $product->id,
+                    'name'        => $product->name,
+                    'description' => $product->description,
+                    'created_by'  => optional($product->creator)->email, // ✅ user email instead of ID
+                    'created_at'  => $product->created_at,
+                ];
+            }),
+        ], 200);
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -51,7 +59,12 @@ class ProductController extends Controller
             ], 403);
         }
 
-        $product = Product::create($request->all());
+        $product = Product::create([
+            "name" => $request->name,
+            "description" => $request->description,
+            "created_by" => auth()->id(),
+            "created_at" => now()
+        ]);
 
         $response = [
             'status' => 'success',
