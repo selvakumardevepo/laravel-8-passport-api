@@ -113,11 +113,6 @@ Create Product
 <img width="934" height="625" alt="image" src="https://github.com/user-attachments/assets/2c0f4058-f6cb-4a4d-bb54-616bcc4505dc" />
 
 
-Get Product
-
-<img width="965" height="624" alt="image" src="https://github.com/user-attachments/assets/5538f0ca-198f-4082-9e00-d834d8ec9379" />
-
-
 Search Product
 
 <img width="945" height="623" alt="image" src="https://github.com/user-attachments/assets/9b306a4d-805c-4d80-85ce-fcbff2b0fe54" />
